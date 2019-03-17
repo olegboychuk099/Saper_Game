@@ -7,6 +7,9 @@ package Main;
 
 import java.applet.Applet;
 import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import javafx.scene.media.AudioClip;
 
 /**
@@ -23,9 +26,16 @@ public class Win extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         playy();
     }
-public final java.applet.AudioClip backgroundSg = Applet.newAudioClip(getClass().getResource("/icons/win.mp3"));
+public static java.applet.AudioClip backgroundSg = null;
 
     private void playy() {
+    	URL url = null;
+		url = getClass().getResource("/icons/win.mp3");
+    	// URL url = StdAudio.class.getResource(filename);
+    	if (url == null) {
+    		throw new IllegalArgumentException("could not play '" + getClass().getResource("/icons/win.mp3") + "'");
+    	}
+    	backgroundSg = Applet.newAudioClip(url);
     	backgroundSg.play();
 	}
     /**
