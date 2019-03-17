@@ -4,12 +4,21 @@
  * and open the template in the editor.
  */
 package Main;
+import java.applet.*;
 
+import java.awt.*;
+import java.awt.event.*;
 import java.applet.Applet;
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.InputStream;
 import java.net.URL;
-
+import java.io.File;
 import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
 
 /**
  *
@@ -25,18 +34,16 @@ public class Lose extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         playy();
     }
-    public static java.applet.AudioClip backgroundSg = null;
+
+    private String resource = ""+getClass().getResource("/icons/luse.mp3");
     
+    private String url = resource.replaceFirst("file:/", "");
+    
+    public  final AudioClip backgroundSg = new AudioClip(new File(url).toURI().toString());
+     
     private void playy() {
-    	URL url = null;
-		url = getClass().getResource("/icons/luse.mp3");
-    	// URL url = StdAudio.class.getResource(filename);
-    	if (url == null) {
-    		throw new IllegalArgumentException("could not play '" + getClass().getResource("/icons/win.mp3") + "'");
-    	}
-    	backgroundSg = Applet.newAudioClip(url);
-    	backgroundSg.play();
-	}
+   	backgroundSg.play();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -88,7 +95,7 @@ public class Lose extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-backgroundSg.stop();
+    	backgroundSg.stop();
         this.setVisible(false);
     }//GEN-LAST:event_jLabel2MouseClicked
 

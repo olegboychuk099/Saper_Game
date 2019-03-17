@@ -26,16 +26,13 @@ public class Win extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         playy();
     }
-public static java.applet.AudioClip backgroundSg = null;
-
+    private String resource = ""+getClass().getResource("/icons/win.mp3");
+    
+    private String url = resource.replaceFirst("file:/", "");
+    
+    public  final AudioClip backgroundSg = new AudioClip(new File(url).toURI().toString());
+     
     private void playy() {
-    	URL url = null;
-		url = getClass().getResource("/icons/win.mp3");
-    	// URL url = StdAudio.class.getResource(filename);
-    	if (url == null) {
-    		throw new IllegalArgumentException("could not play '" + getClass().getResource("/icons/win.mp3") + "'");
-    	}
-    	backgroundSg = Applet.newAudioClip(url);
     	backgroundSg.play();
 	}
     /**
